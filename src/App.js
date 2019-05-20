@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import photos_list from './data/photos.json';
+import photosList from './data/photos.json';
+import albumsList from './data/albums.json';
+
 const Photo = (props) => {
   console.log("Props", props);
   return (
@@ -12,18 +14,29 @@ const Photo = (props) => {
   );
 }
 
+const Album = (props) => {
+  console.log("Props", props);
+  return (
+    <div className="album">
+      <div className="album_title">{props.album.title}</div>
+
+    </div>
+  );
+}
+
 function App() {
-  const first_variable = "Gallery Example";
-  console.log(photos_list);
+
+  const [albums] = useState(albumsList);
+  const [photos] = useState(photosList);
+  console.log(albums);
+  console.log(photos);
   return (
     <div className="App">
         <h1>First APP with react</h1>
-        <h2>{ first_variable }</h2>
-        <div className="photos_list">
-          {photos_list.slice(0, 10).map(item =>  { 
-            return <Photo photo={item} key={item.id} />;
-           })}
-        </div>
+      {albums.slice(0, 10).map(item =>  {
+        const thePhotos = photos.filter(photo => photo.albumId === item.id);
+        return <Album album={item} thePhotos={thePhotos} key={item.id} />;
+      })}
     </div>
   );
 }
