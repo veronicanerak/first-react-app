@@ -4,6 +4,7 @@
 
 .App h1 {
   color: purple;
+  margin-bottom: 60px;
 }
 
 .App .title {
@@ -21,7 +22,7 @@
 }
 
 .photo_row {
-  width: 300px;
+  width: 270px;
 }
 
 .photo_title {
@@ -34,8 +35,34 @@
   justify-content: center;
   text-transform: capitalize;
   font-weight: 500;
+  font-style: italic;
+  color: darkslategray;
 }
 
 .photo_image img {
-  width: 300px;
+  width: 230px;
+}
+
+.albums {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.album_title {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 30px 0;
+  color: black;
+  border-bottom: solid 1px #cccc;
+  padding: 10px;
+  width: 100%;
+  border-top: solid 1px #cccc;
+}
+
+.photos_album {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
