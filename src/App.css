@@ -4,12 +4,24 @@
 
 .App h1 {
   color: purple;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .App .title {
   color: blue;
   font-size: 15px;
+}
+
+.App h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.App h3 {
+  text-align: left;
+  margin: 25px;
+  font-size: 20px;
+  font-style: italic;
 }
 
 /* Images Gallery*/
@@ -65,4 +77,8 @@
   flex-flow: row wrap;
   justify-content: space-between;
   margin-bottom: 50px;
+}
+
+.App .photo_title_carousel {
+  text-align: center;
 }
