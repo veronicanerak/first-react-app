@@ -49,7 +49,8 @@ const Album = (props) => {
   );
 }
 
-function App() {
+
+const App = (props) => {
 
   const [albums] = useState(albumsList);
   const [photos] = useState(photosList);
@@ -67,13 +68,14 @@ function App() {
 
           <Carousel>
 
-            {photos.slice(0, 3).map(photo =>  {
-
+            {albums.slice(0, 4).map(album =>  {
+              const thePhotos = photos.filter(photo => photo.albumId === album.id);
               return (
                 <Carousel.Item>
-                  <PhotoCarousel photo={photo} key={photo.id} />
+
+                  <Album album={album} key={album.id} thePhotos={thePhotos} />
                   <Carousel.Caption>
-                    <h3 className="photo_title_carousel">{photo.title}</h3>
+                    <h3 className="photo_title_carousel">{album.title}</h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                   </Carousel.Caption>
                 </Carousel.Item>
