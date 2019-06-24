@@ -8,15 +8,35 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Modal from 'react-bootstrap/Modal';
 import Carousel from 'react-bootstrap/Carousel';
 import './custom.scss';
 
 const Photo = (props) => {
-  console.log("Props", props);
+
+  const [showModal, setShowModal] = useState(false);
+  const [hideModal, setHideModal] = useState(true);
+  console.log("Click Props", props);
+
+  const handlePhotoClick = (event) => {
+    console.log("The Click", event);
+    event.currentTarget.style.backgroundColor = '#ccc';
+    setShowModal(true);
+    setHideModal(false);
+  }
+
   return (
     <div className="photo_row">
       <div className="photo_title">{props.photo.title}</div>
-      <div className="photo_image"><img alt={props.photo.title} src={props.photo.url} /></div>
+      <div className="photo_image">
+        <Button variant="primary" onClick={handlePhotoClick}>
+          <Image src={props.photo.url} alt={props.photo.title} rounded />
+        </Button>
+
+        <CustomModal photoTitle={props.photo.title} photoImg={props.photo.url} modalShow={showModal} modalHide={hideModal} />
+
+      </div>
     </div>
   );
 }
@@ -26,7 +46,9 @@ const PhotoCarousel = (props) => {
   return (
     <div className="photo_carousel">
       <div className="photo_title_carousel">{props.photo.title}</div>
-      <div className="photo_image_carousel"><img alt={props.photo.title} src={props.photo.url} /></div>
+      <div className="photo_image_carousel">
+        <Image src={props.photo.url} alt={props.photo.title} rounded />
+      </div>
     </div>
   );
 }
@@ -49,6 +71,42 @@ const Album = (props) => {
   );
 }
 
+// Modal Component
+const CustomModal = (props) => {
+  console.log("Custom Modal Props", props);
+
+  return (
+    <Modal show={props.modalShow} onHide={props.modalHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>{props.photoTitle}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+
+        <Image src={props.photoImg} roundedCircle />
+        <StarsRate stars="2 stars" />
+
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.modalHide}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={props.modalHide}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
+  );
+}
+
+// StarsRate component
+const StarsRate = (props) => {
+  return (
+    <div className="stars-rate">
+      Here we will display the stars { props.stars }
+    </div>
+  );
+}
 
 const App = (props) => {
 
