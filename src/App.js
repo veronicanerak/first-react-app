@@ -26,6 +26,12 @@ const Photo = (props) => {
     setHideModal(false);
   }
 
+  const handleModalHide = (show) => {
+    console.log(show);
+    setShowModal(false);
+    setHideModal(true);
+  }
+
   return (
     <div className="photo_row">
       <div className="photo_title">{props.photo.title}</div>
@@ -34,7 +40,7 @@ const Photo = (props) => {
           <Image src={props.photo.url} alt={props.photo.title} rounded />
         </Button>
 
-        <CustomModal photoTitle={props.photo.title} photoImg={props.photo.url} modalShow={showModal} modalHide={hideModal} />
+        <CustomModal photoTitle={props.photo.title} photoImg={props.photo.url} modalShow={showModal} modalHide={handleModalHide} />
 
       </div>
     </div>
